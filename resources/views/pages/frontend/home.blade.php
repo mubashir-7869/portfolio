@@ -2,7 +2,7 @@
     <section class="cd-hero">
         <ul class="cd-hero-slider autoplay">
             @foreach ($sliders as $slider)
-                <li class="{{ $loop->first ? 'selected' : '' }}">
+            <li class="{{ $loop->first ? 'selected' : '' }}" style="background-image: url('{{ asset('storage/' . $slider->slide_image) }}');">
                     <div class="cd-full-width">
                         <div class="tm-slide-content-div slide-caption">
                             <span>{{ $slider->slide_subtitle }}</span>

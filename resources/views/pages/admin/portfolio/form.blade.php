@@ -52,7 +52,7 @@
 
                     <!-- Submit Button -->
                     <div class="col-md-12 d-flex justify-content-end">
-                        {!! Form::submit(isset($portfolio) ? 'Update' : 'Submit', ['class' => 'btn btn-primary mt-3']) !!}
+                        {!! Form::submit(isset($portfolio) ? 'Update' : 'Create', ['class' => 'btn btn-primary mt-3']) !!}
                     </div>
 
                     {!! Form::close() !!}

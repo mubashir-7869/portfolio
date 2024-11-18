@@ -26,6 +26,7 @@
                                 <th>Description</th>
                                 <th>Button Name</th>
                                 <th>Button Link</th>
+                                <th>Background Image</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -54,7 +55,7 @@
             'responsive': true,
             'colReorder': true,
             'ajax': {
-                'url': '{{ route('sliders.search') }}',
+                'url': '{{ route('slider.search') }}',
 
             },
             columns: [{
@@ -92,6 +93,10 @@
                 {
                     data: 'button_link',
                     name: 'button_link'
+                },
+                {
+                    data: 'image',
+                    name: 'image'
                 },
                 {
                     data: 'actions',

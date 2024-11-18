@@ -13,8 +13,11 @@
             @foreach ($whatWeDo as $what_we_do)
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item {{ $loop->first ? 'first-service' : ($loop->last ? 'fourth-service' : '') }}">
-                        <div class="icon">
-                        </div>
+                       @if($what_we_do->icon)
+                       <i data-feather="{{$what_we_do->icon}}" class="service-icon"></i>
+                       @else
+                       <div class="icon"> </div>
+                       @endif
                         <h4>{{ $what_we_do->title }}</h4>
                         <p>{{ $what_we_do->description }}</p>
                     </div>

@@ -5,8 +5,7 @@
         <div class="container">
             <nav class="navbar navbar-inverse" role="navigation">
                 <div class="navbar-header">
-                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#main-nav">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -34,7 +33,7 @@
     </div>
     <!--/.header-->
 
-   
+
 
     @include('pages.frontend.home');
 
@@ -73,17 +72,20 @@
                             @csrf
                             <div class="col-md-6">
                                 <fieldset>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                    <input name="name" type="text" class="form-control" id="name"
+                                        placeholder="Your name..." required="">
                                 </fieldset>
                             </div>
                             <div class="col-md-6">
                                 <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                    <input name="email" type="email" class="form-control" id="email"
+                                        placeholder="Your email..." required="">
                                 </fieldset>
                             </div>
                             <div class="col-md-12">
                                 <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..."
+                                        required=""></textarea>
                                 </fieldset>
                             </div>
                             <div class="col-md-12">
@@ -111,23 +113,16 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="social-icons">
+                    <div>
                         <ul>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-rss"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-dribbble"></i></a>
-                            </li>
+                            @if ($socialLinks)
+                                @foreach ($socialLinks as $socialLink)
+                                    <li>
+                                        <a href="{{ $socialLink->link }}" target="blank"> <i
+                                                class="{{ $socialLink->icon }}"></i></a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -136,4 +131,4 @@
     </footer>
 
 
-    @endsection
+@endsection

@@ -76,11 +76,27 @@
                             </div>
                         </div>
 
+                        <!-- Image Upload Field -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {!! Form::label('image', __('Background Image:')) !!}
+                                {!! Form::file('image', [
+                                    'class' => 'form-control',
+                                    isset($slider) ? '' : 'required' => 'required', 
+                                ]) !!}
+                                @if(isset($slider) && $slider->image)
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/' . $slider->slide_image) }}" width="150px" height="auto" alt="Slider Image">
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Submit Button -->
                     <div class="col-md-12 d-flex justify-content-end">
-                        {!! Form::submit(__('Submit'), ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit(isset($slider) ? 'Update':'Create', ['class' => 'btn btn-primary']) !!}
                     </div>
 
                     {!! Form::close() !!}

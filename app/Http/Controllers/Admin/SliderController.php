@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SliderController extends Controller
@@ -74,6 +75,9 @@ class SliderController extends Controller
         ->orderColumn('button_link', function ($query, $order) {
             $query->orderBy('button_link', $order)->orderBy('id', $order);
         })
+        ->addColumn('image', function ($row) {
+            return $row->slide_image ? '<img src="' . asset('storage/' . $row->slide_image) . '" width="80">' : 'No Image';
+        })
         ->addColumn('actions', function ($row) {
             $btn = '<div class="btn-group">
             <a href="'.route('slider.edit',$row['id']).'" title="Edit" class="mr-2"><i class="fa fa-edit text-info font-18"></i></a>
@@ -83,7 +87,7 @@ class SliderController extends Controller
             </div>';
             return $btn;
         })
-        ->rawColumns(['actions'])
+        ->rawColumns(['actions','image'])
         ->toJson();
 
     }
@@ -108,7 +112,7 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'slideImage' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048', // Max size 2MB
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048', 
             'slideTitle' => 'required|string|max:255',
             'slideSubtitle' => 'required|string|max:255',
             'slideDescription' => 'required|string|max:1000',
@@ -116,12 +120,11 @@ class SliderController extends Controller
             'buttonLink' => 'nullable|url|max:255',
         ]);
 
-        if ($request->hasFile('slideImage')) {
-            $imageName = uniqid('slider_', true) . '.' . $request->file('slideImage')->getClientOriginalExtension();
-
-            $imagePath = $request->file('slideImage')->storeAs('slider_images', $imageName, 'public');
-        } else {
-            $imagePath = null;
+        if ($request->hasFile('image')) {
+            $originalFileName = $request->file('image')->getClientOriginalName();
+            $currentDate = Carbon::now()->format('Y-m-d_H-i-s'); 
+            $fileName = $currentDate . '_' . $originalFileName;
+            $imagePath = $request->file('image')->storeAs('slider_images', $fileName, 'public');
         }
         // dd($imagePath);
 

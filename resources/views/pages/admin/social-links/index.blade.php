@@ -1,5 +1,7 @@
 @extends('layouts.admin.app')
+
 @push('header')
+    <!-- DataTables CSS -->
     <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -10,19 +12,19 @@
         <div class="col-md-12 mt-3">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <p class="mb-0">What We Do Details</p>
-                    <a href="{{ route('whatwedo.create') }}" class="btn btn-sm btn-primary ms-auto" title="Add What We Do">
+                    <p class="mb-0">All Social Links</p>
+
+                    <a href="{{ url('social-links/create') }}" class="btn btn-sm btn-primary ms-auto" title="Add Social Link">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped" id="whatWeDo-table">
+                    <table class="table table-bordered table-striped" id="social-links-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Icon</th>
-                                <th>Title</th>
-                                <th>Description</th>
+                                <th>URL</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,11 +36,13 @@
 @endsection
 
 @push('scripts')
+    <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+
     <script>
-        var table = $('#whatWeDo-table').DataTable({
+        var table = $('#social-links-table').DataTable({
             'paging': true,
             'searching': true,
             'ordering': true,
@@ -50,7 +54,7 @@
             'responsive': true,
             'colReorder': true,
             'ajax': {
-                'url': '{{ route('whatwedo.search') }}',
+                'url': '{{ route('social-links.search') }}',  // Adjust the route as needed
             },
             columns: [
                 {
@@ -59,43 +63,24 @@
                 },
                 {
                     data: 'icon',
-                    name: 'icon',
+                    name: 'icon'
                 },
                 {
-                    data: 'title',
-                    name: 'title'
-                },
-                {
-                    data: 'description',
-                    name: 'description',
-                    orderable: false,
-                        searchable: false,
-                        render: function(data, type, row) {
-                            if (data !== null) {
-
-                                return '<span data-toggle="tooltip" data-placement="top" title="' + data +
-                                    '">' +
-                                    (data.length > 12 ? data.substr(0, 12) + '...' : data) + '</span>';
-                            } else {
-                                return ''; 
-                            }
-                        }
+                    data: 'link',
+                    name: 'link'
                 },
                 {
                     data: 'actions',
                     name: 'actions',
                     orderable: false,
-                    searchable: false,
-                    
+                    searchable: false
                 }
             ],
             lengthMenu: [
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "All"]
             ],
-            drawCallback: function(settings) {
-            feather.replace(); 
-        }
+           
         });
     </script>
 @endpush

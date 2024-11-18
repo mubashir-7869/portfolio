@@ -13,7 +13,7 @@
         <!--end::Brand Link-->
     </div>
     <!--end::Sidebar Brand-->
-    
+
     <!--begin::Sidebar Wrapper-->
     <div class="sidebar-wrapper">
         <nav class="mt-2">
@@ -43,15 +43,17 @@
                 <li class="nav-header">COMPONENTS</li>
 
                 <!-- Home Page Menu -->
-                <li class="nav-item {{ request()->is('slider') || request()->is('slider/create') || request()->is('slider/edit/*') ? 'active menu-open' : '' }}">
-                    <a href="{{url('slider')}}" class="nav-link">
+                <li
+                    class="nav-item {{ request()->is('slider') || request()->is('slider/create') || request()->is('slider/edit/*') ? 'active menu-open' : '' }}">
+                    <a href="{{ url('slider') }}" class="nav-link">
                         <i class="nav-icon fas fa-home"></i> <!-- Font Awesome home icon -->
                         <p>Home Page</p>
                     </a>
                 </li>
 
                 <!-- About Us Menu with submenus -->
-                <li class="nav-item {{ request()->is('services') || request()->is('services/create') || request()->is('services/edit/*') || request()->is('whatwedo') || request()->is('whatwedo/create') || request()->is('whatwedo/edit/*') ? 'active menu-open' : '' }}">
+                <li
+                    class="nav-item {{ request()->is('services') || request()->is('services/create') || request()->is('services/edit/*') || request()->is('whatwedo') || request()->is('whatwedo/create') || request()->is('whatwedo/edit/*') ? 'active menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-info-circle"></i> <!-- Font Awesome info-circle icon -->
                         <p>
@@ -61,13 +63,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('whatwedo') }}" class="nav-link {{ request()->is('whatwedo') || request()->is('whatwedo/create') || request()->is('whatwedo/edit/*') ? 'active' : '' }}">
+                            <a href="{{ url('whatwedo') }}"
+                                class="nav-link {{ request()->is('whatwedo') || request()->is('whatwedo/create') || request()->is('whatwedo/edit/*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>What We Do</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('services') }}" class="nav-link {{ request()->is('services') || request()->is('services/create') || request()->is('services/edit/*') ? 'active' : '' }}">
+                            <a href="{{ url('services') }}"
+                                class="nav-link {{ request()->is('services') || request()->is('services/create') || request()->is('services/edit/*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>Services</p>
                             </a>
@@ -76,15 +80,17 @@
                 </li>
 
                 <!-- Portfolio Menu -->
-                <li class="nav-item {{ request()->is('portfolio') || request()->is('portfolio/create') || request()->is('portfolio/edit/*') ? 'active menu-open' : '' }}">
-                    <a href="{{url('portfolio')}}" class="nav-link">
+                <li
+                    class="nav-item {{ request()->is('portfolio') || request()->is('portfolio/create') || request()->is('portfolio/edit/*') ? 'active menu-open' : '' }}">
+                    <a href="{{ url('portfolio') }}" class="nav-link">
                         <i class="nav-icon fas fa-briefcase"></i> <!-- Font Awesome briefcase icon -->
                         <p>Portfolio</p>
                     </a>
                 </li>
 
                 <!-- Blogs and Fun Facts Menu -->
-                <li class="nav-item {{ request()->is('blogs') || request()->is('blogs/create') || request()->is('blogs/edit/*') || request()->is('funfacts') || request()->is('funfacts/create') || request()->is('funfacts/edit/*') ? 'active menu-open' : '' }}">
+                <li
+                    class="nav-item {{ request()->is('blogs') || request()->is('blogs/create') || request()->is('blogs/edit/*') || request()->is('funfacts') || request()->is('funfacts/create') || request()->is('funfacts/edit/*') ? 'active menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-pen"></i> <!-- Font Awesome pen icon -->
                         <p>
@@ -94,13 +100,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('blogs') }}" class="nav-link {{ request()->is('blogs') || request()->is('blogs/create') || request()->is('blogs/edit/*') ? 'active' : '' }}">
+                            <a href="{{ url('blogs') }}"
+                                class="nav-link {{ request()->is('blogs') || request()->is('blogs/create') || request()->is('blogs/edit/*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>Blog</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('funfacts') }}" class="nav-link {{ request()->is('funfacts') || request()->is('funfacts/create') || request()->is('funfacts/edit/*') ? 'active' : '' }}">
+                            <a href="{{ url('funfacts') }}"
+                                class="nav-link {{ request()->is('funfacts') || request()->is('funfacts/create') || request()->is('funfacts/edit/*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>Fun Facts</p>
                             </a>
@@ -108,6 +116,15 @@
                     </ul>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ url('social-links') }}"
+                        class="nav-link {{ request()->is('social-links') || request()->is('social-links/create') || request()->is('social-links/edit/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-share-alt"></i>
+                        <p>Social Links</p>
+                    </a>
+                </li>
+
+                </li>
             </ul>
         </nav>
     </div>

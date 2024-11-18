@@ -104,7 +104,7 @@
 
                     <!-- Submit Button -->
                     <div class="col-md-12 d-flex justify-content-end">
-                        {!! Form::submit(isset($service) ? 'Update' : 'Submit', ['class' => 'btn btn-primary mt-3']) !!}
+                        {!! Form::submit(isset($service) ? 'Update' : 'Create', ['class' => 'btn btn-primary mt-3']) !!}
                     </div>
 
                     {!! Form::close() !!}

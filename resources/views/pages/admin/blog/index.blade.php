@@ -25,7 +25,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Author</th>
-                                <th>Date</th>
+                                <th>Published Date</th>
                                 <th>Category</th>
                                 <th>Image</th>
                                 <th>Description</th>

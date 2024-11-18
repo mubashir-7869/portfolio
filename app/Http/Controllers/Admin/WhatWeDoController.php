@@ -38,7 +38,7 @@ class WhatWeDoController extends Controller
                 return $row->id;
             })
             ->addColumn('icon', function ($row) {
-                return '<i class="' . $row->icon . '"></i>';
+                return '<i data-feather='. $row->icon .'></i>';
             })
             ->addColumn('title', function ($row) {
                 return $row->title;

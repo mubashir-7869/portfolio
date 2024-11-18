@@ -40,6 +40,7 @@ http://www.tooplate.com/view/2089-meteor
     </script>
 
     <script src="{{ asset('assets/frontend/js/vendor/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons"></script>
 
     <script src="{{ asset('assets/frontend/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
@@ -65,6 +66,7 @@ http://www.tooplate.com/view/2089-meteor
                 event.preventDefault();
                 $('#main-nav').toggleClass("open");
             });
+            feather.replace();
         });
         // scroll function
         function scrollToID(id, speed) {

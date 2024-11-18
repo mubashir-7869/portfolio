@@ -9,17 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
-    public function up()
+    public function up(): void
     {
-        Schema::create('portfolios', function (Blueprint $table) {
+        Schema::create('social_links', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('image');
-            $table->integer('category_id')->nullable();
+            $table->string('icon');
+            $table->string('link');
             $table->timestamps();
-
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete(null);
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portfolios');
+        Schema::dropIfExists('social_links');
     }
 };

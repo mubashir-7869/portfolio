@@ -7,7 +7,7 @@
         <div class="col-12 mt-3">
             <div class="card">
                 <div class="card-header">
-                    {{ isset($whatWeDo) ? 'Edit What We Do' : 'Create New What We Do' }}
+                    {{ isset($whatWeDo) ? 'Edit What We Do' : 'What We Do' }}
                 </div>
                 <div class="card-body">
                     <!-- Dynamic Form -->
@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 {!! Form::label('icon', 'Icon:') !!}
                                 {!! Form::text('icon', isset($whatWeDo) ? $whatWeDo->icon : null, [
-                                    'placeholder' => 'Enter Icon Class',
+                                    'placeholder' => 'Enter Icon name (e.g., home, star, etc.)',
                                     'required' => 'required',
                                     'class' => 'form-control',
                                 ]) !!}

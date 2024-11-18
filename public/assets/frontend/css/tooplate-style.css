@@ -255,13 +255,21 @@ ul.cd-hero-slider {
 	margin-top: 25px;
 }
 
-.service-item:hover h4 {
+.service-item:hover p,
+.service-item:hover .service-icon,.service-item:hover h4 {
 	color: #fff;
+	transform: scale(1.1);  
 }
 
-.service-item:hover p {
-	color: #fff;
+
+.service-icon {
+	height: 32px;
+	width: 32px;
+	display: inline-block;
+    color: rgb(106, 170, 106);  
+    transition: all 0.3s ease; 
 }
+
 
 .first-service .icon {
 	background-image: url(../img/first-service-main.png);

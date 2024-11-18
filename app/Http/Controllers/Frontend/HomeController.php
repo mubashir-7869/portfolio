@@ -8,6 +8,7 @@ use App\Models\WhatWeDo;
 use App\Models\Portfolio;
 use App\Models\Category;
 use App\Models\Admin\Blog;
+use App\Models\Admin\SocialLink;
 use App\Models\Admin\FunFact;
 use App\Models\Service;
 
@@ -21,6 +22,7 @@ class HomeController extends Controller
         $whatWeDo = WhatWeDo::all();
         $portfolios = Portfolio::all();
         $categories = Category::all();
+        $socialLinks = SocialLink::all();
         $blogs = Blog::all();
         $funFacts = FunFact::all();
 
@@ -32,6 +34,7 @@ class HomeController extends Controller
             'categories' => $categories,
             'blogs' => $blogs,
             'funFacts' => $funFacts,
+            'socialLinks' => $socialLinks
         ];
 
         return view('pages.frontend.index')->with($pageData);
