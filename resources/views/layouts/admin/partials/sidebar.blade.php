@@ -88,7 +88,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-pen"></i> <!-- Font Awesome pen icon -->
                         <p>
-                            About Us
+                            Blogs
                             <i class="nav-arrow fas fa-chevron-right"></i>
                         </p>
                     </a>
@@ -96,13 +96,13 @@
                         <li class="nav-item">
                             <a href="{{ url('blogs') }}" class="nav-link {{ request()->is('blogs') || request()->is('blogs/create') || request()->is('blogs/edit/*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-circle"></i>
-                                <p>What We Do</p>
+                                <p>Blog</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('funfacts') }}" class="nav-link {{ request()->is('funfacts') || request()->is('funfacts/create') || request()->is('funfacts/edit/*') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-circle"></i>
-                                <p>Services</p>
+                                <p>Fun Facts</p>
                             </a>
                         </li>
                     </ul>
