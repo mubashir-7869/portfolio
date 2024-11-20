@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\WhatWeDoController;
-use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::prefix('slider')->name('slider.')->group(function () {
         Route::resource('/', SliderController::class);
+        Route::post('/store', [SliderController::class, 'store'])->name('store');
         Route::get('/search', [SliderController::class, 'search'])->name('search');
         Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [SliderController::class, 'update'])->name('update');
@@ -47,9 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('services')->name('services.')->group(function () {
         Route::resource('/', ServiceController::class);
         Route::get('/search', [ServiceController::class, 'search'])->name('search');
+        Route::post('/store', [ServiceController::class, 'store'])->name('store');
         Route::get('/edit/{id}', [ServiceController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [ServiceController::class, 'update'])->name('update');
-        Route::delete('/destroy/{id}', [ServiceController::class, 'destroy'])->name('destroy');
+        Route::get('/destroy/{id}', [ServiceController::class, 'destroy'])->name('destroy');
     });
 
     // What We Do
@@ -64,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('portfolio')->name('portfolio.')->group(function () {
         Route::resource('/', PortfolioController::class);
-        Route::get('/search', [SocialLinkController::class, 'search'])->name('search');
+        Route::get('/search', [PortfolioController::class, 'search'])->name('search');
 
         Route::post('/update-category', [PortfolioController::class, 'updateCategory'])->name('update.category');
         Route::get('/edit/{id}', [PortfolioController::class, 'edit'])->name('edit');
@@ -105,11 +107,14 @@ Route::middleware('auth')->group(function () {
         Route::put('/update/{id}', [SocialLinkController::class, 'update'])->name('update');
         Route::get('/destroy/{id}', [SocialLinkController::class, 'destroy'])->name('destroy');
     });
-
-    Route::prefix('contact-us')->name('contact-us.')->group(function () {
-        Route::post('/message', [ContactController::class, 'sendMessage'])->name('message');
+    Route::prefix('contact')->name('contact.')->group(function () {
+        Route::resource('/', ContactController::class);
+        Route::get('/search', [ContactController::class, 'search'])->name('search');
+        Route::get('review/{id}', [ContactController::class,'markAsReviewed'])->name('review');
+        Route::get('destroy/{id}', [ContactController::class,'destroy'])->name('destroy');
     });
 
 });
+Route::get('contact/store', [ContactController::class, 'store'])->name('contact-us.store');
 
 require __DIR__ . '/auth.php';

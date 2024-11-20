@@ -77,7 +77,7 @@
 
                                 return '<span data-toggle="tooltip" data-placement="top" title="' + data +
                                     '">' +
-                                    (data.length > 12 ? data.substr(0, 12) + '...' : data) + '</span>';
+                                    (data.length > 50 ? data.substr(0, 50) + '...' : data) + '</span>';
                             } else {
                                 return ''; 
                             }

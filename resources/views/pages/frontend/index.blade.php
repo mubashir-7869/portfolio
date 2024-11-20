@@ -1,11 +1,14 @@
 @extends('layouts.frontend.app')
-
+@push('header')
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css" rel="stylesheet">
+@endpush
 @section('content')
     <div class="header">
         <div class="container">
             <nav class="navbar navbar-inverse" role="navigation">
                 <div class="navbar-header">
-                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -61,14 +64,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="map">
-                        <img src="img/map.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 mx-auto">
                     <div class="row">
-                        <form id="contact" action="{{ route('contact-us.message') }}" method="post">
+                        <form id="contact" action="{{ route('contact-us.store') }}">
                             @csrf
                             <div class="col-md-6">
                                 <fieldset>
@@ -96,6 +95,7 @@
                         </form>
                     </div>
                 </div>
+                <div class="col-md-2"></div>
             </div>
         </div>
     </div>
@@ -132,3 +132,55 @@
 
 
 @endsection
+
+
+@push('scripts')
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#contact').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'GET',
+                    data: formData,
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                position: "center", // Positioning alert in the center
+                                title: response.message, // Success message from backend
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 2500
+                            }).then(function() {
+                                window.location.reload();
+                            });
+                        } else {
+                           
+                            Swal.fire({
+                                position: "center",
+                                title: response.message, 
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Something went wrong. Please try again later.",
+                            showConfirmButton: false,
+                            timer: 4500
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

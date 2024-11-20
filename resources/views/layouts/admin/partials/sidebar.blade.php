@@ -124,6 +124,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ url('contact') }}"
+                        class="nav-link {{ request()->is('contact') || request()->is('contact/create') || request()->is('contact/edit/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>Contact Messages</p>
+                    </a>
+                </li>
                 </li>
             </ul>
         </nav>

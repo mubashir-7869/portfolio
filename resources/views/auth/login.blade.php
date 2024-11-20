@@ -27,7 +27,7 @@
                                 :value="old('email')" required autofocus autocomplete="username">
                             <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
                         </div>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger" />
                     </div>
 
                     <!-- Password -->
@@ -38,7 +38,7 @@
                         </div>
 
 
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-danger" />
                     </div>
 
                     <!-- Remember Me -->

@@ -53,7 +53,7 @@
                         <!-- Date Field -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('date', 'Date:') !!}
+                                {!! Form::label('date', 'Published Date:') !!}
                                 {!! Form::date('date', isset($blog) ? $blog->date : null, [
                                     'class' => 'form-control',
                                     'required' => 'required',
