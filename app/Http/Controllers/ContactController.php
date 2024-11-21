@@ -36,12 +36,13 @@ class ContactController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
+   
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string',
-        ]);
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'message' => 'required|string',
+    ]);
 
         // Save the message to the database
         $contact = new Contact;
@@ -50,7 +51,6 @@ class ContactController extends Controller
         $contact->message = $request->message;
         $contact->status = 'pending';
         $contact->save();
-
         return response()->json(['status' => 'success','message' => 'Your message has been sent successfully!',
         ]);
     }
@@ -95,7 +95,7 @@ class ContactController extends Controller
             })
           
             ->addColumn('created_at', function ($row) {
-                return $row->created_at->format('d-m-Y');
+                return $row->created_at->format('d-m-Y H:i');
             })
             ->orderColumn('created_at', function ($query, $order) {
                 $query->orderBy('created_at', $order)->orderBy('id', $order);

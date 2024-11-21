@@ -115,6 +115,6 @@ Route::middleware('auth')->group(function () {
     });
 
 });
-Route::get('contact/store', [ContactController::class, 'store'])->name('contact-us.store');
+Route::post('contacts/messages/store', [ContactController::class, 'store'])->name('contact.message.store');
 
 require __DIR__ . '/auth.php';

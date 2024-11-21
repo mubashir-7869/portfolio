@@ -14,11 +14,15 @@
 
         <ul class="navbar-nav ms-auto"> 
             <!-- Navbar Search -->
-            {{-- <li class="nav-item"> 
-                <a class="nav-link" data-widget="navbar-search" href="#" role="button"> 
-                    <i class="bi bi-search"></i> 
-                </a> 
-            </li>  --}}
+            <li class="nav-item dropdown"> <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-bell-fill"></i> <span class="navbar-badge badge text-bg-warning">{{$messages}}</span> </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> <span class="dropdown-item dropdown-header">{{$messages}} Notifications</span>
+                    <div class="dropdown-divider"></div> <a href="{{url('contact') }}" class="dropdown-item"> <i class="bi bi-envelope me-2"></i> {{$messages}} new messages
+                        <span class="float-end text-secondary fs-7"> @if ($messages > 0) {{ $time }}@endif</span> </a>
+                    <div class="dropdown-divider"></div> <a href="{{url('contact')}}" class="dropdown-item dropdown-footer">
+                        See All Notifications
+                    </a>
+                </div>
+            </li> 
 
             
             <!-- User Menu Dropdown -->

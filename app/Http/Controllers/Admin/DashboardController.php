@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,11 +12,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $messages = Contact::where('status','pending')->count();
-        $pageData = [
-            'messages'=>$messages,
-        ];
-        return view('pages.admin.dashboard.index')->with($pageData);
+       
+        return view('pages.admin.dashboard.index');
     }
 
     /**
