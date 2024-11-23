@@ -31,7 +31,7 @@ class CategoryController extends Controller
                 <div class="btn-group" >
                    <a  href="#" id="create-category" title="Edit Category" data-url="'.route('category.edit', $row->id).'" data-ajax-popup="true" data-title="Edit Category" data-bs-toggle="tooltip"><i class="fa fa-edit text-info font-18"></i></a>
                     &nbsp;&nbsp;
-                    <a href="' . route('category.destroy', $row->id) . '" title="Delete" >  <i class="fa fa-trash text-danger font-18"></i></a>
+                    <a href="#" title="Delete" onclick="Delete(\'category/destroy/' . $row->id . '\')" >  <i class="fa fa-trash text-danger font-18"></i></a>
 
                 </div>
             ';

@@ -73,7 +73,7 @@ class ServiceController extends Controller
                 $btn = '<div class="btn-group">
                 <a href="' . route('services.edit', $row->id) . '" title="Edit" class="mr-2"><i class="fa fa-edit text-info font-18"></i></a>
                 &nbsp &nbsp
-                <a href="' . route('services.destroy', $row->id) . '" title="Delete" >  <i class="fa fa-trash text-danger font-18"></i></a>
+                 <a href="#" title="Delete" onclick="Delete(' . $row->id . ')" >  <i class="fa fa-trash text-danger font-18"></i></a>
 
             </div>';
                 return $btn;
@@ -161,7 +161,7 @@ class ServiceController extends Controller
             $currentDate = Carbon::now()->format('Y-m-d_H-i-s'); // Format as: 2024-11-15_14-25-30
             $fileName = $currentDate . '_' . $originalFileName;
             $imagePath = $request->file('right_image')->storeAs('services', $fileName, 'public');
-        }       
+        }
         $service = Service::findOrFail($id);
         $service->title = $request->title;
         $service->description = $request->description;
@@ -170,7 +170,7 @@ class ServiceController extends Controller
         $service->second_btn_name = $request->second_btn_name;
         $service->second_btn_link = $request->second_btn_link;
         if ($request->hasFile('right_image')) {
-        $service->right_image_url = $imagePath ?? null;
+            $service->right_image_url = $imagePath ?? null;
         }
         $service->save();
 

@@ -12,7 +12,7 @@
                     <!-- Profile Update Form -->
                     {!! Form::open([
                         'url' => route('profile.update'),
-                        'method' => 'PATCH',
+                        'method' => 'PATCH', 'files' => true,
                     ]) !!}
 
                     <div class="row">
@@ -61,6 +61,23 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {!! Form::label('image', __('Image:')) !!}
+                                {!! Form::file('image', ['class' => 'form-control',isset($user) ? '' : 'required' => 'required',
+                                ]) !!}
+                                    <small class="form-text text-muted">Leave blank if you don't want to update the image.image.</small>
+                                
+                            </div>
+                        </div>
+                            @if (isset($user) && $user->image)
+                                        
+                                    <div class="col-md-6 mt-2">
+                                        <img src="{{ asset('storage/' . $user->image) }}" width="100px" height="auto"
+                                            alt="Slider Image">
+                                    </div>
+                                @endif
+                       
 
                     </div>
 

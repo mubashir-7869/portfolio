@@ -85,6 +85,7 @@
                                     isset($slider) ? '' : 'required' => 'required', 
                                 ]) !!}
                                 @if(isset($slider) && $slider->image)
+                                <small class="form-text text-muted">Leave blank if you don't want to update the image.</small>
                                     <div class="mt-2">
                                         <img src="{{ asset('storage/' . $slider->slide_image) }}" width="150px" height="auto" alt="Slider Image">
                                     </div>

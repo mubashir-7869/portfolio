@@ -38,6 +38,7 @@
 @endsection
 
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
@@ -114,5 +115,50 @@
                 $('[data-toggle="tooltip"]').tooltip();
             }
         });
+        function Delete(rowId) {
+    
+  
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success py-2 px-4",
+            cancelButton: "btn btn-danger mx-4 py-2 px-4"
+        },
+        buttonsStyling: false
+    });
+
+    swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+        
+    }).then((result) => {
+        if (result.isConfirmed) {
+             // AJAX call
+            $.ajax({
+                url: '{{ url('/slider/destroy') }}' + '/' + rowId,
+                method: 'get',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(result) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Success!",
+                        text: "Slider Deletd successfully.",
+                        icon: "success",
+                        timer:2000
+                    });
+                    window.location.reload();
+                },
+                error: function(jqXHR, exception) {
+                    toastr.error('Failed to update data');
+                }
+            });
+        }
+    });
+}
     </script>
 @endpush

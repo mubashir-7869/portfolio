@@ -28,13 +28,13 @@
             <!-- User Menu Dropdown -->
             <li class="nav-item dropdown user-menu"> 
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> 
-                    <img src="{{ asset('path/to/profile/picture.jpg') }}" class="user-image rounded-circle shadow" alt="User Image"> 
+                    <img src="{{ asset('storage/' . Auth::user()->image) }}" class="user-image rounded-circle" alt="User Image"> 
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span> 
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <!-- User Image -->
                     <li class="user-header text-bg-primary"> 
-                        <img src="{{ asset('path/to/profile/picture.jpg') }}" class="rounded-circle shadow" alt="User Image">
+                        <img src="{{ asset('storage/' . Auth::user()->image) }}" class="rounded-circle shadow" alt="User Image">
                         <p>
                             {{ Auth::user()->name }} - Web Developer
                             <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>

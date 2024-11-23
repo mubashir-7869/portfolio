@@ -16,7 +16,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="#" class="navbar-brand scroll-top">
-                        <div class="logo"></div>
+                        <div style=""></div>
                     </a>
                 </div>
                 <!--/.navbar-header-->

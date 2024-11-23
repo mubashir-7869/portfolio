@@ -17,7 +17,7 @@
 
                     <div class="row">
                         <!-- Name Field -->
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('name', __('Name:')) !!}
                                 {!! Form::text('name', old('name', $user->name), [
@@ -29,7 +29,7 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Email Field -->
                         <div class="col-md-6">
@@ -44,11 +44,12 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
 
-                                @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+                                @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                                     <div>
                                         <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
                                             {{ __('Your email address is unverified.') }}
-                                            <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md">
+                                            <button form="send-verification"
+                                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md">
                                                 {{ __('Click here to re-send the verification email.') }}
                                             </button>
                                         </p>
@@ -59,6 +60,21 @@
                                         @endif
                                     </div>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {!! Form::label('image', __('Image:')) !!}
+                                {!! Form::file('image', ['class' => 'form-control',isset($user) ? '' : 'required' => 'required',
+                                ]) !!}
+                                {{-- @if (isset($user) && $user->image)
+                                    <small class="form-text text-muted">Leave blank if you don't want to update the
+                                        image.</small>
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/' . $user->image) }}" width="150px" height="auto"
+                                            alt="Slider Image">
+                                    </div>
+                                @endif --}}
                             </div>
                         </div>
 
@@ -86,7 +102,7 @@
                                 'url' => route('password.update'),
                                 'method' => 'PUT',
                             ]) !!}
-            
+
                             <div class="row">
                                 <!-- Current Password Field -->
                                 <div class="col-md-6">
@@ -96,14 +112,14 @@
                                             'placeholder' => __('Enter your current password'),
                                             'class' => 'form-control',
                                             'autocomplete' => 'current-password',
-                                            'required' => 'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('current_password')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-            
+
                                 <!-- New Password Field -->
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -112,14 +128,14 @@
                                             'placeholder' => __('Enter your new password'),
                                             'class' => 'form-control',
                                             'autocomplete' => 'new-password',
-                                            'required' => 'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('password')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-            
+
                                 <!-- Confirm Password Field -->
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -128,36 +144,36 @@
                                             'placeholder' => __('Confirm your new password'),
                                             'class' => 'form-control',
                                             'autocomplete' => 'new-password',
-                                            'required' => 'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('password_confirmation')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-            
+
                             </div>
-            
+
                             <!-- Save Button -->
                             <div class="col-md-12 d-flex justify-content-end">
                                 {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}
                             </div>
-            
+
                             {!! Form::close() !!}
-            
+
                             <!-- Success Message (Optional) -->
                             @if (session('status') === 'password-updated')
                                 <p class="mt-3 font-medium text-sm text-green-600 dark:text-green-400">
                                     {{ __('Password updated successfully.') }}
                                 </p>
                             @endif
-            
+
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
+
+
 
             <!-- Delete Account Section -->
             <div class="row mt-4">
@@ -170,36 +186,35 @@
                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                 {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
                             </p>
-        
+
                             <!-- Delete Account Button -->
-                            <button
-                                type="button"
-                                class="btn btn-danger"
-                                data-bs-toggle="modal"
-                                data-bs-target="#confirm-user-deletion"
-                            >
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#confirm-user-deletion">
                                 {{ __('Delete Account') }}
                             </button>
-        
+
                             <!-- Modal -->
-                            <div class="modal fade" id="confirm-user-deletion" tabindex="-1" aria-labelledby="confirm-user-deletion-label" aria-hidden="true">
+                            <div class="modal fade" id="confirm-user-deletion" tabindex="-1"
+                                aria-labelledby="confirm-user-deletion-label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="confirm-user-deletion-label">{{ __('Are you sure you want to delete your account?') }}</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <h5 class="modal-title" id="confirm-user-deletion-label">
+                                                {{ __('Are you sure you want to delete your account?') }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <p>
                                                 {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                                             </p>
-        
+
                                             <!-- Form for Deleting Account -->
                                             {!! Form::open([
                                                 'url' => route('profile.destroy'),
                                                 'method' => 'DELETE',
                                             ]) !!}
-        
+
                                             <div class="form-group">
                                                 {!! Form::label('password', __('Password:')) !!}
                                                 {!! Form::password('password', [
@@ -207,27 +222,28 @@
                                                     'placeholder' => __('Enter your password'),
                                                     'required' => 'required',
                                                 ]) !!}
-        
+
                                                 @error('password')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            
+
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">{{ __('Cancel') }}</button>
                                             {!! Form::submit(__('Delete Account'), ['class' => 'btn btn-danger']) !!}
                                         </div>
                                         {!! Form::close() !!}
                                     </div>
                                 </div>
                             </div>
-        
+
                         </div>
                     </div>
                 </div>
             </div>
-        
+
         </div>
     </div>
 

@@ -2,12 +2,12 @@
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand">
         <!--begin::Brand Link-->
-        <a href="./index.html" class="brand-link">
+        <a href="/dashboard" class="brand-link">
             <!--begin::Brand Image-->
-            <img src="../../dist/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow">
+            <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="brand-image opacity-100 shadow">
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">AdminLTE 4</span>
+            <span class="brand-text fw-light">PortFolio</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
@@ -21,22 +21,11 @@
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
 
                 <!-- Dashboard Menu Item -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{ request()->is('dashboard') ? 'active menu-open' : ''}}">
+                    <a href="/dashboard" class="nav-link">
                         <i class="nav-icon bi bi-house-door"></i> <!-- Updated to Bootstrap icon -->
-                        <p>
-                            Dashboard
-                            <i class="nav-arrow bi bi-chevron-right"></i>
-                        </p>
+                        <p>Dashboard</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Dashboard v1</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <!-- Components Header -->

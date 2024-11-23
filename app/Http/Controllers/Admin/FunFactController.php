@@ -144,9 +144,8 @@ class FunFactController extends Controller
                         <i class="fas fa-edit text-info font-18"></i>
                     </a>
                     &nbsp;&nbsp;
-                    <a href="' . route('funfacts.destroy', $row->id) . '" title="Delete">
-                        <i class="fa fa-trash text-danger font-18"></i>
-                    </a>
+                    <a href="#" title="Delete" onclick="Delete('.$row->id.')" >  <i class="fa fa-trash text-danger font-18"></i></a>
+
                 ';
             })
             ->rawColumns(['actions'])

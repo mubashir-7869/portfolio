@@ -59,7 +59,8 @@ class PortfolioController extends Controller
                 return '<div class="btn-group">
                             <a href="' . route('portfolio.edit', $row->id) . '" title="Edit" class="mr-2"><i class="fa fa-edit text-info font-18"></i></a>
                              &nbsp;&nbsp;
-                            <a href="' . route('portfolio.destroy', $row->id) . '" title="Delete" >  <i class="fa fa-trash text-danger font-18"></i></a>
+                             <a href="#" title="Delete" onclick="Delete(\'portfolio/destroy/' . $row->id . '\')" >  <i class="fa fa-trash text-danger font-18"></i></a>
+
                         </div>';
             })
             ->rawColumns(['image', 'actions'])

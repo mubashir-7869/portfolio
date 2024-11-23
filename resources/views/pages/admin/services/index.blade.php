@@ -1,4 +1,3 @@
-
 @extends('layouts.admin.app')
 @push('header')
     <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet">
@@ -11,10 +10,10 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <p class="mb-0">All Services</p>
-                    @if($services->isEmpty())
-                    <a href="{{ route('services.create') }}" class="btn btn-sm btn-primary ms-auto" title="Add Service">
-                        <i class="fas fa-plus"></i>
-                    </a>
+                    @if ($services->isEmpty())
+                        <a href="{{ route('services.create') }}" class="btn btn-sm btn-primary ms-auto" title="Add Service">
+                            <i class="fas fa-plus"></i>
+                        </a>
                     @endif
                 </div>
                 <div class="card-body">
@@ -72,16 +71,16 @@
                     name: 'description',
                     orderable: false,
                     searchable: false,
-                        render: function(data, type, row) {
-                            if (data !== null) {
+                    render: function(data, type, row) {
+                        if (data !== null) {
 
-                                return '<span data-toggle="tooltip" data-placement="top" title="' + data +
-                                    '">' +
-                                    (data.length > 50 ? data.substr(0, 50) + '...' : data) + '</span>';
-                            } else {
-                                return ''; 
-                            }
+                            return '<span data-toggle="tooltip" data-placement="top" title="' + data +
+                                '">' +
+                                (data.length > 50 ? data.substr(0, 50) + '...' : data) + '</span>';
+                        } else {
+                            return '';
                         }
+                    }
                 },
                 {
                     data: 'first_btn_name',
@@ -102,7 +101,7 @@
                 {
                     data: 'right_image_url',
                     name: 'right_image_url',
-                    
+
                 },
                 {
                     data: 'actions',
@@ -119,5 +118,49 @@
                 $('[data-toggle="tooltip"]').tooltip();
             }
         });
+
+        function Delete(rowId) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success py-2 px-4",
+                    cancelButton: "btn btn-danger mx-4 py-2 px-4"
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true,
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // AJAX call
+                    $.ajax({
+                        url: '{{ url('/services/destroy') }}' + '/' + rowId,
+                        method: 'get',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                        },
+                        success: function(result) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Success!",
+                                text: "Slider Deletd successfully.",
+                                icon: "success",
+                                timer: 2000
+                            });
+                            window.location.reload();
+                        },
+                        error: function(jqXHR, exception) {
+                            toastr.error('Failed to update data');
+                        }
+                    });
+                }
+            });
+        }
     </script>
 @endpush

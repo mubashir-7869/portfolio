@@ -39,7 +39,7 @@ class SocialLinkController extends Controller
                 return $row->id;
             })
             ->addColumn('icon', function ($row) {
-                return '<i class="fa fa-facebook"></i>';
+                return '<i class="fab fa-facebook"></i>';
             })
             ->addColumn('link', function ($row) {
                 $link = '<a href="' . $row->link . '" target="_blank">' . $row->link . '</a>';
