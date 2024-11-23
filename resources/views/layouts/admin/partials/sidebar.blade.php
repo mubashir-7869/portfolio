@@ -21,7 +21,7 @@
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
 
                 <!-- Dashboard Menu Item -->
-                <li class="nav-item {{ request()->is('dashboard') ? 'active menu-open' : ''}}">
+                <li class="nav-item {{ request()->is('dashboard') ? 'active menu-open' : '' }}">
                     <a href="/dashboard" class="nav-link">
                         <i class="nav-icon bi bi-house-door"></i> <!-- Updated to Bootstrap icon -->
                         <p>Dashboard</p>
@@ -106,20 +106,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('social-links') }}"
-                        class="nav-link {{ request()->is('social-links') || request()->is('social-links/create') || request()->is('social-links/edit/*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-share-alt"></i>
-                        <p>Social Links</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a href="{{ url('contact') }}"
                         class="nav-link {{ request()->is('contact') || request()->is('contact/create') || request()->is('contact/edit/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-address-book"></i>
                         <p>Contact Messages</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('social-links') }}"
+                        class="nav-link {{ request()->is('social-links') || request()->is('social-links/create') || request()->is('social-links/edit/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-share-alt"></i>
+                        <p>Social Links</p>
+                    </a>
                 </li>
             </ul>
         </nav>
